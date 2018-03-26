@@ -1,0 +1,80 @@
+<! DOCTYPE html>  
+<html>  
+   <head>  
+      <title>Page Title</title>  
+  
+      <style>  
+         h1  
+         {  
+            color: #05E395;  
+         }  
+         fieldset {  
+            font-family: sans-serif;  
+            border: 5px solid #05E395;  
+            background: #ddd;  
+            border-radius: 5px;  
+            padding: 15px;  
+         }  
+         fieldset legend {  
+            background: #0BDB9D;  
+  
+            color: #fff;  
+            padding: 5px 10px ;  
+            font-size: 32px;  
+            border-radius: 5px;  
+            box-shadow: 0 0 0 5px #ddd;  
+            margin-left: 20px;  
+         }  
+      </style>  
+      <script language="vbscript" type="text/vbscript">  
+         Sub Handlechange()  
+             MsgBox "File Imported Sucessfully”, vbInformation  
+         End Sub  
+         Sub ExportXML()  
+             Dim ObjXML  
+             Dim fileinput  
+             Dim Root  
+             Dim NodeList  
+             Dim Msg  
+             Dim port  
+             Dim ip  
+             Dim nextmask  
+			 
+             Set ObjXML = CreateObject ("Microsoft.XMLDOM")   
+             ObjXML.async = False   
+             fileinput = Document.getElementById ("browse").Value  
+			 msgbox fileinput
+             ObjXML.load(fileinput)  
+             Set Root = ObjXML.documentElement   
+             Set NodeList = Root.getElementsByTagName("elemB")   
+             For Each Elem In NodeList   
+                 Set port = Elem.getElementsByTagName ("elemB") (0)    
+                 Msg ="[PORT :]" & port.Text & vbNewLine  
+                 MsgBox Msg  
+             Next  
+             MsgBox "Data Read Sucessfully”, vbInformation  
+         End Sub  
+      </script>  
+   </head>  
+<body>  
+   <form>  
+      <section style="margin: 10px ;">  
+      <fieldset style="min-height:100px;">  
+         <legend><b>Xpath Extractor </b> </legend>  
+         <center>  
+            <h1>XML Reader</h1>  
+  
+            <img src="https://www01.wellsfargomedia.com/assets/images/global/wf-logo.gif" alt="View" style="width:218px;height:256px;">  
+            <br>  
+            <br>   
+            <input type="file" id="browse" name="fileupload" onChange="Handlechange()"/>  
+            <br>  
+            <br>   
+            <input type="button" value="Export" id="Export" onclick="ExportXML()"/>  
+         </center>  
+         <label> <br/> </label>  
+         <label> <br/> </label>   
+      </fieldset>  
+   </form>  
+</body>  
+</html>  
